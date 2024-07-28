@@ -1,30 +1,29 @@
 <?php
-
 session_start();
 include "DB.php";
 
+$response = [];
 
-$name = $_POST['name'];
-$email = $_POST['email'];
-$address = $_POST['address'];
-$salary = $_POST['salary'];
-$job_role = $_POST['job_role'];
+if (isset($_POST['name'], $_POST['email'], $_POST['address'], $_POST['salary'], $_POST['job_role'])) {
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $address = $_POST['address'];
+    $salary = $_POST['salary'];
+    $job_role = $_POST['job_role'];
 
-$sql = "INSERT INTO Customer (name, email, address, salary, job_role) 
-        VALUES ('$name', '$email', '$address', '$salary', '$job_role')";
+    $sql = "INSERT INTO Customer (name, email, address, salary, job_role) VALUES ('$name', '$email', '$address', '$salary', '$job_role')";
 
-if ($conn->query($sql) === TRUE) {
-    $_SESSION["isInserted"] = 1;
-    #header("Location:ShowData.php");
-    echo json_encode(array("statusCode"=>200));
-    
+    if ($conn->query($sql) === TRUE) {
+        $response["statusCode"] = 200;
+    } else {
+        $response["statusCode"] = 201;
+        $response["error"] = $conn->error;
+    }
 } else {
-    echo json_encode(array("statusCode"=>201));
+    $response["statusCode"] = 400;
+    $response["error"] = "Missing required parameters";
 }
 
-mysqli_close($conn);
-
-
+$conn->close();
+echo json_encode($response);
 ?>
-
-

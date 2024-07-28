@@ -28,34 +28,33 @@
         <div class="row justify-content-center">
             <div class="">
                 <div class="form-container">
-                <!-- action="insert_to_DB.php" -->
-                    <form  method="post"  id = "Formm" onsubmit="insert(event)">
+                    <form method="post" id="Formm" onsubmit="insert(event)">
                         <h2 class="mb-4">Add Customer</h2>
-                        <input type="hidden" name="id"  required>
+                        <input type="hidden" name="id">
 
                         <div class="mb-3">
                             <label for="name" class="form-label">Name:</label>
-                            <input type="text" id="name" name="name" class="form-control"  required>
+                            <input type="text" id="name" name="name" class="form-control" required>
                         </div>
 
                         <div class="mb-3">
                             <label for="email" class="form-label">Email:</label>
-                            <input type="email" id="email" name="email" class="form-control"  required>
+                            <input type="email" id="email" name="email" class="form-control" required>
                         </div>
 
                         <div class="mb-3">
                             <label for="address" class="form-label">Address:</label>
-                            <input type="text" id="address" name="address" class="form-control"  required>
+                            <input type="text" id="address" name="address" class="form-control" required>
                         </div>
 
                         <div class="mb-3">
                             <label for="salary" class="form-label">Salary:</label>
-                            <input type="number" id="salary" name="salary" class="form-control" step="0.01"  required>
+                            <input type="number" id="salary" name="salary" class="form-control" step="0.01" required>
                         </div>
 
                         <div class="mb-3">
                             <label for="job_role" class="form-label">Job Role:</label>
-                            <input type="text" id="job_role" name="job_role" class="form-control"  required>
+                            <input type="text" id="job_role" name="job_role" class="form-control" required>
                         </div>
 
                         <p id="error"></p>

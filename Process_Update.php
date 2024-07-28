@@ -2,7 +2,7 @@
 session_start();
 include "DB.php";
 
-$Customer_id = $_SESSION["id"];
+$Customer_id = $_SESSION["customer_id"];
 
 $sql = "SELECT * FROM Customer WHERE customer_id = $Customer_id";
 $result = $conn->query($sql);
@@ -51,37 +51,38 @@ if ($result->num_rows > 0) {
             <div class="">
                 <div class="form-container">
                 <!-- action="processUpdate.php" -->
-                    <form  method="post" onsubmit = "Update(event)">
-                        <h2 class="mb-4">Update Customer</h2>
-                        <input type="hidden" id="id" name="id" value="<?php echo $Customer_id; ?>" required>
+                <form id="UpdateForm" method="post">
+    <h2 class="mb-4">Update Customer</h2>
+    <input type="hidden" id="id" name="id" value="<?php echo $Customer_id; ?>" required>
 
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Name:</label>
-                            <input type="text" id="name" name="name" class="form-control" value="<?php echo $name; ?>" required>
-                        </div>
+    <div class="mb-3">
+        <label for="name" class="form-label">Name:</label>
+        <input type="text" id="name" name="name" class="form-control" value="<?php echo $name; ?>" required>
+    </div>
 
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email:</label>
-                            <input type="email" id="email" name="email" class="form-control" value="<?php echo $email; ?>" required>
-                        </div>
+    <div class="mb-3">
+        <label for="email" class="form-label">Email:</label>
+        <input type="email" id="email" name="email" class="form-control" value="<?php echo $email; ?>" required>
+    </div>
 
-                        <div class="mb-3">
-                            <label for="address" class="form-label">Address:</label>
-                            <input type="text" id="address" name="address" class="form-control" value="<?php echo $address; ?>" required>
-                        </div>
+    <div class="mb-3">
+        <label for="address" class="form-label">Address:</label>
+        <input type="text" id="address" name="address" class="form-control" value="<?php echo $address; ?>" required>
+    </div>
 
-                        <div class="mb-3">
-                            <label for="salary" class="form-label">Salary:</label>
-                            <input type="number" id="salary" name="salary" class="form-control" step="0.01" value="<?php echo $salary; ?>" required>
-                        </div>
+    <div class="mb-3">
+        <label for="salary" class="form-label">Salary:</label>
+        <input type="number" id="salary" name="salary" class="form-control" step="0.01" value="<?php echo $salary; ?>" required>
+    </div>
 
-                        <div class="mb-3">
-                            <label for="job_role" class="form-label">Job Role:</label>
-                            <input type="text" id="job_role" name="job_role" class="form-control" value="<?php echo $job_role; ?>" required>
-                        </div>
+    <div class="mb-3">
+        <label for="job_role" class="form-label">Job Role:</label>
+        <input type="text" id="job_role" name="job_role" class="form-control" value="<?php echo $job_role; ?>" required>
+    </div>
 
-                        <button type="submit" class="btn btn-primary">Update</button>
-                    </form>
+    <button type="button" id="updateButton" class="btn btn-primary" onclick="Update(<?php echo $Customer_id; ?>)">Update</button>
+    </form>
+
                     <br>
                     <a href="insertData.php" class="btn btn-secondary">Insert Users</a>
                 </div>

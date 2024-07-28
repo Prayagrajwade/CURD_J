@@ -2,10 +2,9 @@
 session_start();
 include "DB.php";
 
-   
+$response = [];
 
-
-    #$Customer_id = $_SESSION["id"];
+if (isset($_POST['id'], $_POST['name'], $_POST['email'], $_POST['address'], $_POST['salary'], $_POST['job_role'])) {
     $Customer_id = $_POST['id'];
     $name = $_POST['name'];
     $email = $_POST['email'];
@@ -18,15 +17,20 @@ include "DB.php";
             WHERE customer_id = $Customer_id";
 
     if ($conn->query($sql) === TRUE) {
-        echo json_encode(array("statusCode"=>200));
+        $response["statusCode"] = 200;
         $_SESSION["isUpdate"] = 1;
-        
     } else {
-        echo json_encode(array("statusCode"=>201));
+        $response["statusCode"] = 201;
+        $response["error"] = $conn->error;
     }
-
+} else {
+    $response["statusCode"] = 400;
+    $response["error"] = "Missing required parameters";
+}
 
 $conn->close();
+echo json_encode($response);
 ?>
+
 
 
